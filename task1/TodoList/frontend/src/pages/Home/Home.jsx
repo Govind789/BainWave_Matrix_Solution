@@ -13,7 +13,6 @@ const Home = () => {
                 </p>
                 <button className="btn btn-outline-light bg-dark text-white " type="submit">Make ToDo List</button>
             </div>
-            
         </div>
     );
 }

@@ -2,10 +2,10 @@ const express = require('express');
 const app = require('./app');
 const mongoose = require('mongoose');
 const PORT = 5000;
+require('dotenv').config();
 
-const mongoURL = "mongodb+srv://gvgupta789:WltWp1vHRAvZQQi2@chatter.5igxjfn.mongodb.net/chatter?retryWrites=true&w=majority&appName=chatter";
 
-mongoose.connect(mongoURL)
+mongoose.connect(process.env.mongoURL)
         .then(()=>console.log('Database Connected'))
         .catch(()=>console.log('Database not Connected'));
 
