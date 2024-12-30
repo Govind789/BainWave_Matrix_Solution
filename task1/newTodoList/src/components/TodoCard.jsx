@@ -37,10 +37,6 @@ const TodoCard = ({index,handleDeleteTodo}) => {
         setAllList(updatedList);
     }
 
-    const handleHeading = (idx) =>{
-
-    }
-
     return (
         <div className="container flex justify-center">
             <div className="bg-stone-100 p-4 h-96 max-w-3/12 mt-9 rounded-lg flex flex-col items-center gap-10 ">

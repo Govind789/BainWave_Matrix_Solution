@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
 const blogSchema = mongoose.Schema({
-    heading : {
+    title : {
         type : String,
         required : true
     },
-    content: {
+    story: {
         type: String,
         required: true
     },
@@ -14,6 +14,16 @@ const blogSchema = mongoose.Schema({
         ref: 'users',
         required: true
     },
+    image : {
+        path : {
+            type : String,
+            required : true
+        },
+        filename : {
+            type : String,
+            required : true
+        },
+    },
     timestamp: {
         type: Date,
         default: Date.now
@@ -21,7 +31,7 @@ const blogSchema = mongoose.Schema({
     comments : [{
         user : {
             type : mongoose.Schema.Types.ObjectId,
-            ref : user,
+            ref : 'users',
             required : true
         },
         content : {

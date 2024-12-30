@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const app = require('./app');
 const PORT = 3000;
 
-const url = "mongodb+srv://$_USERNAME_$:$_PASSWORD_$@chatter.5igxjfn.mongodb.net/PhotoSphere?retryWrites=true&w=majority&appName=chatter";
+const url = "mongodb+srv://$_USERNAME_$:$_PASSWORD_$@chatter.5igxjfn.mongodb.net/$_DB_NAME_$?retryWrites=true&w=majority&appName=chatter";
 
 let dbLink = url.replace("$_USERNAME_$",process.env.DB_USER);
 dbLink = dbLink.replace("$_PASSWORD_$",process.env.DB_PASSWORD);

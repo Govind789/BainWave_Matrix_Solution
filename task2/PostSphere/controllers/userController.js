@@ -5,7 +5,7 @@ const userModel = require('../models/userModel');
 
 const generateToken = (userID)=>{
     const secret = process.env.SECRET;
-    const token = jwt.sign({userID},secret,{expiresIn : '10d'});
+    const token = jwt.sign({userID},secret,{expiresIn : '50d'});
     return token;
 }
 

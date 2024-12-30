@@ -12,7 +12,7 @@ const Login = () => {
     const [showPassword,setshowPassword] = useState('text');
     const [nameError, setNameError] = useState("");
     const [passwordError, setPasswordError] = useState("");
-    const {isLoggedin,login,userInfo,setUserInfo} = useContext(UserContext);
+    const {login,setUserInfo} = useContext(UserContext);
 
     const togglePassword = ()=>{
         if(showPassword === 'text'){
@@ -89,7 +89,11 @@ const Login = () => {
                 localStorage.setItem("authorization",data.data.token);
                 const user = await data.data.user;
                 setUserInfo(user);
+                localStorage.setItem("userInfo", JSON.stringify(user));
+                console.log(user);
                 login();
+            }else if(data.status === "failed"){
+                setPasswordError(data?.msg);
             }
 
         }catch(err){

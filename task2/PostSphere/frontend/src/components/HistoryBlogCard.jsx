@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import UserContext from '../../context/UserContext';
 
-const BlogCard = ({ blog,image }) => {
+const HistoryBlogCard = ({ blog, image, onDelete }) => {
     const { userInfo } = useContext(UserContext);
     const [comment, setComment] = useState('');
     const [comments, setComments] = useState(blog.comments || []);
-    const [imageUrl , setImageUrl ] = useState('');
+    const [imageUrl, setImageUrl] = useState('');
 
     useEffect(() => {
         if (image && image.path) {
@@ -33,12 +33,8 @@ const BlogCard = ({ blog,image }) => {
 
                 const data = await res.json();
                 if (data.status === 'success') {
-                    console.log(data);
                     const addedComment = data.comment || { ...newComment, _id: data._id }; 
-                    setComments(prevComments => [
-                        ...prevComments,
-                        addedComment 
-                    ]);
+                    setComments(prevComments => [...prevComments, addedComment]);
                     setComment('');
                 }
             } catch (error) {
@@ -47,11 +43,7 @@ const BlogCard = ({ blog,image }) => {
         }
     };
 
-
-
     const handleCommentDelete = async (commentId) => {
-        // const commentToDelete = blog.comments;
-
         try {
             const res = await fetch(`http://localhost:3000/api/blog/${blog._id}/comment/${commentId}`, {
                 headers: {
@@ -61,7 +53,6 @@ const BlogCard = ({ blog,image }) => {
             });
 
             const data = await res.json();
-            console.log(data);
             if (data.status === 'success') {
                 setComments(prevComments => prevComments.filter(c => c._id !== commentId));
             }
@@ -70,10 +61,16 @@ const BlogCard = ({ blog,image }) => {
         }
     };
 
+    const handleBlogDelete = () => {
+        if (onDelete) {
+            onDelete(blog._id);
+        }
+    };
+
     return (
-        <div className="bg-white shadow-lg rounded-lg overflow-hidden w-80">
+        <div className="bg-white shadow-lg rounded-lg overflow-hidden w-80 relative">
             <div className="relative h-40">
-            {imageUrl ? (
+                {imageUrl ? (
                     <img
                         src={imageUrl}
                         alt={blog.title}
@@ -112,7 +109,7 @@ const BlogCard = ({ blog,image }) => {
                         </button>
                     </div>
 
-                    <div className="space-y-2 h-16  overflow-y-auto">
+                    <div className="space-y-2 h-16 overflow-y-auto">
                         {comments.length > 0 ? (
                             comments.map((c, idx) => (
                                 <div
@@ -135,9 +132,16 @@ const BlogCard = ({ blog,image }) => {
                         )}
                     </div>
                 </div>
+
+                <button
+                    onClick={handleBlogDelete}
+                    className="bg-red-600 text-white px-3 py-2 rounded-md text-sm hover:bg-red-700 w-full"
+                >
+                    Delete Blog
+                </button>
             </div>
         </div>
     );
-};
+}
 
-export default BlogCard;
+export default HistoryBlogCard;

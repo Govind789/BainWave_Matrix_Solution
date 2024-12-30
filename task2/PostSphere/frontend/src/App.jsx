@@ -7,10 +7,19 @@ import Login from './components/Login'
 import { useState } from 'react'
 import UserContext from '../context/UserContext'
 import CreateBlog from './components/CreateBlog'
+import HistoryPage from './components/HistoryPage'
 
 function App() {
-  const [isLoggedin,setisLoggedin] = useState(false);
-  const [userInfo,setUserInfo] = useState(null);
+  const [userInfo, setUserInfo] = useState(() => {
+    const savedUserInfo = localStorage.getItem('userInfo');
+    return savedUserInfo ? JSON.parse(savedUserInfo) : null;
+  });
+  const [isLoggedin,setisLoggedin] = useState(()=>{
+        if(localStorage.getItem('authorization'))
+            return true;
+        else
+            return false;
+    });
   
   const [blogs,setBlogs] = useState([]);
 
@@ -34,7 +43,7 @@ function App() {
     },
     {
       path : '/blogs',
-      element : isLoggedin?<BlogPage/>: <Navigate to='/login'/>
+      element : isLoggedin? <BlogPage/>: <Navigate to='/login'/>
     },
     {
       path : '/home',
@@ -50,7 +59,7 @@ function App() {
     },
     {
       path : '/history',
-      element : <HomePage/>
+      element : <HistoryPage/>
     },
     
   ])
