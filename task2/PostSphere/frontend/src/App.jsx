@@ -59,7 +59,7 @@ function App() {
     },
     {
       path : '/history',
-      element : <HistoryPage/>
+      element : isLoggedin? <HistoryPage/>: <Navigate to='/login'/>
     },
     
   ])

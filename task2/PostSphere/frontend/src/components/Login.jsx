@@ -83,14 +83,14 @@ const Login = () => {
             });
             
             const data = await res.json();
-            console.log(data);
+            // console.log(data);
     
             if(data.status === "success"){
                 localStorage.setItem("authorization",data.data.token);
                 const user = await data.data.user;
                 setUserInfo(user);
                 localStorage.setItem("userInfo", JSON.stringify(user));
-                console.log(user);
+                // console.log(user);
                 login();
             }else if(data.status === "failed"){
                 setPasswordError(data?.msg);

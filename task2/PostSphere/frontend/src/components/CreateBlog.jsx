@@ -44,6 +44,7 @@ const CreateBlog = () => {
 
     const handlePost = async () => {
         let valid = true;
+
         if (!title || !story) {
             return;
         }
@@ -76,16 +77,16 @@ const CreateBlog = () => {
             formData.append("image", image); 
         }
 
-        for (let [key, value] of formData.entries()) {
-            console.log(`${key}:`, value);
-        }
+        // for (let [key, value] of formData.entries()) {
+        //     console.log(`${key}:`, value);
+        // }
 
         const res = await fetch('http://localhost:3000/api/create', {
             method: "POST",
             body: formData,
         });
 
-        console.log(res);
+        // console.log(res);
 
         if (res.status === 'success') {
             setBlogs([
@@ -99,10 +100,13 @@ const CreateBlog = () => {
                 },
             ]);
 
-            setTitle('');
-            setStory('');
-            setImage(null);
         }
+        setTitle('');
+        setStory('');
+        setImage(null);
+        setStoryError('');
+        setTitleError('');
+        fileInputRef.current.value = "";
     };
 
     return (

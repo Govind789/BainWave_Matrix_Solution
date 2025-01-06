@@ -15,6 +15,8 @@ const BlogCard = ({ blog,image }) => {
         }
     }, [image]);
 
+
+
     const handleCommentPost = async () => {
         if (comment.trim()) {
             const newComment = {
@@ -86,6 +88,11 @@ const BlogCard = ({ blog,image }) => {
 
             <div className="p-5 space-y-4">
                 <div>
+                    <h1 className="text-lg text-gray-800 mb-1">
+                        <b>{blog.user.username}</b>
+                    </h1>
+                </div>
+                <div>
                     <h1 className="text-lg font-semibold text-gray-800 mb-1">Title</h1>
                     <h2 className="text-sm text-gray-600 break-words max-h-11 overflow-y-auto">{blog.title}</h2>
                 </div>
@@ -120,7 +127,7 @@ const BlogCard = ({ blog,image }) => {
                                     className="bg-gray-100 px-3 py-2 rounded-md text-sm text-gray-800 flex justify-between items-center"
                                 >
                                     <span>{c.content}</span>
-                                    {userInfo?.id === c.user._id && (
+                                    {blog.user?._id === (c.user._id)&& (
                                         <button
                                             onClick={() => handleCommentDelete(c._id)}
                                             className="text-red-500 hover:text-red-700"

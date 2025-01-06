@@ -1,8 +1,11 @@
 import React from 'react';
 import Navbar from './Navbar';
+import { useNavigate } from 'react-router-dom';
 
 
 const HomePage = () => {
+    const navigate = useNavigate();
+
     return (
         <div className='h-screen w-screen flex flex-col bg-slate-300'>
             <Navbar page='HomePage'/>
@@ -12,7 +15,7 @@ const HomePage = () => {
                     <p className="text-gray-400 font-medium text-xl text-start">
                         Create blogs by sharing your views and knowledge, engage with others’ opinions, or provide your thoughts on their blogs.
                     </p>
-                    <button onClick={()=>{}} className='h-10 w-64 bg-white rounded-lg hover:bg-slate-500 transition-all delay-75 text-lg font-medium'>Create</button>
+                    <button onClick={()=>navigate('/create')} className='h-10 w-64 bg-white rounded-lg hover:bg-slate-500 transition-all delay-75 text-lg font-medium'>Create</button>
                 </div>
             </div>
             

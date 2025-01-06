@@ -1,6 +1,5 @@
 const blogModel = require("../models/blogModel");
 const userModel = require('../models/userModel');
-// const imageModel = require('../models/imageModel');
 const mongoose = require('mongoose');
 
 
@@ -33,6 +32,36 @@ const deleteBlogs = async(req,res)=>{
             return res.status(404).json({ status: 'failed', msg: 'Blog not found' });
 
         }
+
+        res.status(200).json({ status: 'success', msg: 'blog deleted successfully' });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ status: 'failed', msg: 'Server error' });
+    }
+}
+const updateBlogs = async(req,res)=>{
+
+    const {blogId}= req.params;
+    const {title,story,user} = req.body;
+
+    try {
+        if (!title || !story) {
+            return res.status(400).json({
+                status: 'failed',
+                msg: 'Title and story cannot be empty'
+            });
+        }
+
+        const blog = await blogModel.findfindByIdAndUpdate(blogId);
+
+        if (!blog) {
+            return res.status(404).json({ status: 'failed', msg: 'Blog not found' });
+        }
+
+        blog.title = title || blog.title;
+        blog.story = story || blog.story;
+        await blog.save();
 
         res.status(200).json({ status: 'success', msg: 'blog deleted successfully' });
 
