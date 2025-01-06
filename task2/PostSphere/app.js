@@ -53,15 +53,12 @@ app.use((req, res, next) => {
 
 
 if(process.env.NODE_ENV === "production"){
-    app.use(express.static("frontend/build"));
-
-    const path = require("path");
+    app.use(express.static("frontend/dist"));
 
     app.get("*",(req,res)=>{
         res.sendFile(path.resolve(__dirname,"frontend/dist/index.html"));
     });
 }
-
 
 
 module.exports = app;
