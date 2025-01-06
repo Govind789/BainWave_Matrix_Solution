@@ -87,8 +87,7 @@ const Signup = () => {
             const data = await res.json();
 
             if(data.status === 'success'){
-                console.log(data);
-                setPasswordError(data.msg);
+                setPasswordError(await data.msg);
             }else{
                 setPasswordError(data.msg);
             }
