@@ -88,6 +88,7 @@ const Signup = () => {
 
             if(data.status === 'success'){
                 console.log(data);
+                setPasswordError(data.msg);
             }else{
                 setPasswordError(data.msg);
             }
