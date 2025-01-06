@@ -10,7 +10,7 @@ const BlogCard = ({ blog,image }) => {
     useEffect(() => {
         if (image && image.path) {
             const imagePath = image.path.replace(/\\/g, "/"); 
-            const url = `http://localhost:3000/${imagePath}`;
+            const url = `https://postsphere-ten.vercel.app/${imagePath}`;
             setImageUrl(url); 
         }
     }, [image]);
@@ -25,7 +25,7 @@ const BlogCard = ({ blog,image }) => {
             };
 
             try {
-                const res = await fetch(`http://localhost:3000/api/blog/${blog._id}/comment`, {
+                const res = await fetch(`https://postsphere-ten.vercel.app/api/blog/${blog._id}/comment`, {
                     headers: {
                         "Content-Type": "application/json",
                     },
@@ -55,7 +55,7 @@ const BlogCard = ({ blog,image }) => {
         // const commentToDelete = blog.comments;
 
         try {
-            const res = await fetch(`http://localhost:3000/api/blog/${blog._id}/comment/${commentId}`, {
+            const res = await fetch(`https://postsphere-ten.vercel.app/api/blog/${blog._id}/comment/${commentId}`, {
                 headers: {
                     "Content-Type": "application/json",
                 },

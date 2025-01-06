@@ -16,7 +16,7 @@ const HistoryBlogCard = ({ blog, image, onDelete }) => {
     useEffect(() => {
         if (image && image.path) {
             const imagePath = image.path.replace(/\\/g, "/");
-            const url = `http://localhost:3000/${imagePath}`;
+            const url = `https://postsphere-ten.vercel.app/${imagePath}`;
             setImageUrl(url);
         }
     }, [image]);
@@ -29,7 +29,7 @@ const HistoryBlogCard = ({ blog, image, onDelete }) => {
             };
 
             try {
-                const res = await fetch(`http://localhost:3000/api/blog/${blog._id}/comment`, {
+                const res = await fetch(`https://postsphere-ten.vercel.app/api/blog/${blog._id}/comment`, {
                     headers: {
                         "Content-Type": "application/json",
                     },
@@ -51,7 +51,7 @@ const HistoryBlogCard = ({ blog, image, onDelete }) => {
 
     const handleCommentDelete = async (commentId) => {
         try {
-            const res = await fetch(`http://localhost:3000/api/blog/${blog._id}/comment/${commentId}`, {
+            const res = await fetch(`https://postsphere-ten.vercel.app/api/blog/${blog._id}/comment/${commentId}`, {
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -75,7 +75,7 @@ const HistoryBlogCard = ({ blog, image, onDelete }) => {
 
     const handleUpdate = async () => {
         try {
-            const res = await fetch(`http://localhost:3000/api/blog/${blog._id}`, {
+            const res = await fetch(`https://postsphere-ten.vercel.app/api/blog/${blog._id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

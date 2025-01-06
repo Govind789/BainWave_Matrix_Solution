@@ -75,7 +75,7 @@ const Signup = () => {
                 return;
             }
 
-            const res = await fetch(`http://localhost:3000/signup`, { 
+            const res = await fetch(`https://postsphere-ten.vercel.app/signup`, { 
                 headers: {
                     "Content-Type": "application/json",
                     "authorization": "Bearer "+ localStorage.getItem("authorization"),

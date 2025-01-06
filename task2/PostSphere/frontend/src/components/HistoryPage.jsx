@@ -12,7 +12,7 @@ const HistoryPage = () => {
     useEffect(() => {
         const fetchBlogs = async () => {
             try {
-                const res = await fetch('http://localhost:3000/api/blogs');
+                const res = await fetch('https://postsphere-ten.vercel.app/api/blogs');
                 if (!res.ok) {
                     console.log('Failed to fetch blogs');
                     return;
@@ -31,7 +31,7 @@ const HistoryPage = () => {
 
     const handleDeleteBlog = async (blogId) => {
         try {
-            const res = await fetch(`http://localhost:3000/api/blogs/${blogId}`, {
+            const res = await fetch(`https://postsphere-ten.vercel.app/api/blogs/${blogId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

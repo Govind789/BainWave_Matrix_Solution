@@ -74,7 +74,7 @@ const Login = () => {
                 return;
             }
 
-            const res = await fetch('http://localhost:3000/login', {
+            const res = await fetch('https://postsphere-ten.vercel.app/login', {
                 headers: {
                     "Content-Type": "application/json",
                 },

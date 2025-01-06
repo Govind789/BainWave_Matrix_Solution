@@ -81,7 +81,7 @@ const CreateBlog = () => {
         //     console.log(`${key}:`, value);
         // }
 
-        const res = await fetch('http://localhost:3000/api/create', {
+        const res = await fetch('https://postsphere-ten.vercel.app/api/create', {
             method: "POST",
             body: formData,
         });
